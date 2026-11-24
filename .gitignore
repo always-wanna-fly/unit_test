@@ -1,0 +1,22 @@
+# IDE
+.idea/
+
+# Build directories
+build/
+build-wsl/
+cmake-build-*/
+
+# Compiled files
+*.o
+*.d
+*.a
+*.so
+*.elf
+*.hex
+*.map
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
