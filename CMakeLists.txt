@@ -83,3 +83,9 @@ if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
 
 endif()
 
+enable_testing()
+
+add_test(
+        NAME gpio_tests
+        COMMAND test_gpio
+)
