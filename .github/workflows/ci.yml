@@ -31,3 +31,10 @@ jobs:
 
       - name: Run unit tests
         run: ctest --test-dir build --output-on-failure
+
+
+      - name: Generate coverage report
+        run: |
+          gcov -b -c build/CMakeFiles/button_driver.dir/src/button.c.gcno
+          gcov -b -c build/CMakeFiles/gpio_driver.dir/src/gpio.c.gcno
+  
