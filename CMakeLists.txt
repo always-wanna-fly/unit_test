@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 3.20)
 
 project(embedded_driver_library C)
@@ -64,8 +65,10 @@ target_link_libraries(button_driver PUBLIC
         gpio_driver
 )
 
-# Sanitizers
+# Sanitizers and Code Coverage
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+
+    # AddressSanitizer and UndefinedBehaviorSanitizer
     set(SANITIZER_FLAGS
             -fsanitize=address,undefined
             -fno-omit-frame-pointer
@@ -79,6 +82,20 @@ if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
 
     target_link_options(test_gpio PRIVATE
             -fsanitize=address,undefined
+    )
+
+    # gcov Code Coverage
+    set(COVERAGE_FLAGS
+            --coverage
+    )
+
+    target_compile_options(gpio_driver PRIVATE ${COVERAGE_FLAGS})
+    target_compile_options(gpio_mock PRIVATE ${COVERAGE_FLAGS})
+    target_compile_options(button_driver PRIVATE ${COVERAGE_FLAGS})
+    target_compile_options(test_gpio PRIVATE ${COVERAGE_FLAGS})
+
+    target_link_options(test_gpio PRIVATE
+            --coverage
     )
 
 endif()
