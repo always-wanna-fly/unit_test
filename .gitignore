@@ -5,6 +5,7 @@
 build/
 build-wsl/
 cmake-build-*/
+build-ci/
 
 # Compiled files
 *.o
