@@ -23,3 +23,4 @@ GPIO_Status gpio_read(GPIO_Port port, uint8_t pin, bool *level)
 
     return GPIO_STATUS_OK;
 }
+/* Master branch: independent change */
