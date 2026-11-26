@@ -32,6 +32,17 @@ jobs:
       - name: Run unit tests
         run: ctest --test-dir build --output-on-failure
 
+      - name: Debug coverage files
+        run: |
+          echo "Current directory:"
+          pwd
+
+          echo "Build directory:"
+          ls -la build
+
+          echo "Coverage files:"
+          find . -type f \( -name "*.gcno" -o -name "*.gcda" \)
+
       - name: Find coverage files
         run: |
             find build -type f \( -name "*.gcno" -o -name "*.gcda" \)  
