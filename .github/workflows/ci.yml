@@ -32,9 +32,12 @@ jobs:
       - name: Run unit tests
         run: ctest --test-dir build --output-on-failure
 
+      - name: Find coverage files
+        run: |
+            find build -type f \( -name "*.gcno" -o -name "*.gcda" \)  
+
 
       - name: Generate coverage report
         run: |
-          gcov -b -c build/CMakeFiles/button_driver.dir/src/button.c.gcno
-          gcov -b -c build/CMakeFiles/gpio_driver.dir/src/gpio.c.gcno
-  
+            find build -name "button.c.gcno" -exec gcov -b -c {} \;
+            find build -name "gpio.c.gcno" -exec gcov -b -c {} \;
